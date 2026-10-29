@@ -1,7 +1,5 @@
-# Predicting Titanic Passenger Survival Using a Decision Tree Classifier
-**IEEE-VIT Machine Learning Task | Beginner-Friendly Guide**
 
----
+
 
 ## 1. Project Overview
 
@@ -141,29 +139,6 @@ A **Decision Tree** is a flowchart-like algorithm that makes decisions by asking
 
 ---
 
-## 9. Installation Commands (Windows PowerShell)
-
-Open **Windows PowerShell** in your project folder and run the following commands step-by-step:
-
-```powershell
-# 1. Navigate to the project directory (if not already there)
-cd "C:\Users\SIDDHANT\Downloads\titanic_decision_tree_prototype"
-
-# 2. Create a virtual environment named .venv
-python -m venv .venv
-
-# 3. Activate the virtual environment
-.venv\Scripts\Activate.ps1
-
-# (Optional: If PowerShell blocks script execution, run this once:
-# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-# then run .venv\Scripts\Activate.ps1 again)
-
-# 4. Upgrade pip
-python -m pip install --upgrade pip
-
-# 5. Install all required dependencies
-pip install -r requirements.txt
 ```
 
 ---
@@ -192,7 +167,7 @@ python test_suite.py
 
 ---
 
-## 11. Description of Generated Output Files
+##  Description of Generated Output Files
 
 When `main.py` finishes, an `outputs/` folder is automatically created containing:
 
@@ -215,7 +190,7 @@ outputs/
 
 ---
 
-## 12. Interpreting the Model Results
+##  Interpreting the Model Results
 
 Here are the **actual results from running `main.py`** on the official 80/20 split:
 
@@ -251,78 +226,10 @@ Here are the **actual results from running `main.py`** on the official 80/20 spl
    4. Age        :  9.06%
    5. Sex_male   :  0.00% (Redundant with Sex_female in binary split)
    ```
-   - **Important note on causation:** Feature importance measures how much the mathematical model relied on a variable to split data; **it does not prove real-world causation**. The tree relied heavily on `Sex_female` because the historical protocol *"women and children first"* created a stark statistical boundary in the data.
+ 
 
----
 
-## 13. Troubleshooting Common Errors
 
-### Error: `DATASET FILE NOT FOUND: train.csv`
-- **Cause:** `train.csv` is not located in the project folder.
-- **Fix:** Download `train.csv` from Kaggle and place it in the same directory as `main.py`, or run `python main.py --data "C:\path\to\train.csv"`.
 
-### Error: `ModuleNotFoundError: No module named 'sklearn'` (or `pandas`, `matplotlib`)
-- **Cause:** Virtual environment is not activated, or packages were not installed.
-- **Fix:** Activate `.venv` (`.venv\Scripts\Activate.ps1`) and run `pip install -r requirements.txt`.
 
-### Error: PowerShell Script Execution Blocked (`Activate.ps1 cannot be loaded`)
-- **Cause:** Windows PowerShell security policy restricts unsigned scripts.
-- **Fix:** In PowerShell, run:
-  ```powershell
-  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-  .venv\Scripts\Activate.ps1
-  ```
 
-### Error: `DLL load failed while importing vectorized: An Application Control policy has blocked this file`
-- **Cause:** Windows Defender / AppLocker policy restricts running binary `.pyd` extensions from user `Downloads` folders on some systems.
-- **Fix:** Move the project folder to `C:\Users\SIDDHANT\titanic_decision_tree_prototype` or create the virtual environment in your user home directory (`uv venv ~\.venv_titanic`).
-
----
-
-## 14. Instructions for Uploading to a Public GitHub Repository
-
-To share your work for IEEE-VIT evaluation:
-
-1. **Initialize Git in the project folder:**
-   ```powershell
-   git init
-   ```
-2. **Verify `.gitignore` is present:**
-   Ensure `.gitignore` contains `.venv/`, `__pycache__/`, and `.DS_Store` so temporary files are not uploaded.
-3. **Stage and commit your files:**
-   ```powershell
-   git add main.py test_suite.py requirements.txt README.md report.md .gitignore outputs/
-   git commit -m "feat: complete Titanic Decision Tree classifier with pipeline and visualizations"
-   ```
-4. **Create a new repository on GitHub:**
-   - Go to [https://github.com/new](https://github.com/new)
-   - Name it `titanic-decision-tree-prototype`
-   - Select **Public**
-   - Click **Create repository**
-5. **Push your code to GitHub:**
-   ```powershell
-   git remote add origin https://github.com/YOUR_USERNAME/titanic-decision-tree-prototype.git
-   git branch -M main
-   git push -u origin main
-   ```
-
----
-
-## 15. Limitations & Future Improvements
-
-### Current Limitations
-1. **Single-Tree Variance:** Individual decision trees can be sensitive to small changes in training data.
-2. **Excluded Features:** We omitted `SibSp` (siblings/spouses), `Parch` (parents/children), `Cabin` (cabin location), and `Embarked` (port of boarding) to keep the baseline easy to understand.
-3. **Axis-Aligned Splits:** Continuous variables (`Age`, `Fare`) are partitioned by hard rectangular thresholds (e.g., `Fare <= 26.25`), which can struggle to capture curved boundaries.
-
-### Future Improvements
-1. **Random Forests & Gradient Boosting:** Upgrading to an ensemble model (like Random Forest or XGBoost) will reduce variance and improve recall.
-2. **Feature Engineering:** Extract titles (such as *Mr.*, *Mrs.*, *Miss*, *Master*) from passenger names to infer social status and refine missing age estimates.
-3. **K-Fold Cross-Validation:** Run 5-fold cross-validation to assess stability across multiple data splits.
-
----
-
-## Author & Academic Acknowledgments
-- **Author:** First-Year B.Tech Student
-- **Task:** IEEE-VIT Machine Learning Enrollment Task
-- **Dataset:** Courtesy of Kaggle & the British Board of Trade Titanic Inquiry
